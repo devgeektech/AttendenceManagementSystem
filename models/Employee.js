@@ -1,13 +1,13 @@
 var mongoose = require('mongoose');
  
 var employeeinfoSchema = mongoose.Schema({
-        Email: {
-            type: String,
-            required: true
+        email: {
+            type: String
+    
         },
-        Name: {
-            type:String,
-            required:true
+        name: {
+            type:String
+
         },
       created: { 
         type: Date,

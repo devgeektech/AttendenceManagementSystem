@@ -9,16 +9,15 @@ var app = express();
 
 
 
-exports.create = (req, res) =>{
+exports.create = (req, res) => {
     console.log(req.body, 'testing')
     var obj = {};
-    obj.Email = req.body.email;
-    obj.Name = req.body.name;
+    obj.email = req.body.email;
+    obj.name = '';
     var employee = new models.Employee(obj);
     employee.save(function(err, data) {
     if (err) throw err;
     console.log('EmployeeInfo successfully saved.');
-   
     return res.send(data)
   });
 }

@@ -8,135 +8,28 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var app = express();
 var router = express.Router()
+const cors = require('cors');
+app.use(cors({ origin: '*', optionsSuccessStatus: 200 }));
 app.use(bodyParser.json({ limit: 1024  *1024 * 20, type: 'application/json' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: 1024 * 1024  *20, type: 'application/x-www-form-urlencoding' }));
 var mongoose = require('mongoose');
  require('./router/route').configure(app);
  require('./router/database').configure(mongoose);
-
-
 router.use(function (req, res, next) {
   console.log('Request URL:', req.originalUrl);
   next()
 })
-// var EmployeeInfo = new Employee({
-
-//       Email: 'rakesh.geektech@gmail.com',
-//       Name : 'Rakesh'
-
- 
-// });
-// EmployeeInfo.save(function(err) {
-//   if (err) throw err;
-   
-//   console.log('EmployeeInfo successfully saved.');
-
-// })
-
-// app.get('/employeeinfo',function(req,res){
-//   Employee.find({},function(err,result){
-//     console.log(result)
-//   return res.send(result)
-//   })
-    
-//     })
-
-
-
-
-// app.post('/attendenceDetail', function(req,res){
-  
-// })
-
-
-//        var mvcBook = new Book({
-       
-  //     title: 'ASP.NET MVC 5 with Bootstrap and Knockout.js',
-  //     author: jamieAuthor._id,
-  //     ratings:[{
-  //         summary: 'Great read'
-  //     }]
-  // });
-   
-  // mvcBook.save(function(err) {
-  //     if (err) throw err;
-   
-
-   //});
-   
-  // 
-   
-  // 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// var MongoClient =require('mongodb').MongoClient;
-// var url = "mongodb://localhost:27017/mydb"
-// MongoClient.connect(url,function(err,db){
-//   console.log("connected");
-//   var dbo = db.db('mydb');
-//   dbo.collection("employeeinfo").find({}).toArray(function(err,result) {
-//     if(err) throw err;
-//     console.log(result);
-//     db.close();
-//   });
-// });
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 app.get('/', (req, res) => res.send('Hello World!'))
-
-
-
-
-
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
-
-
-
-
-
-
-
-
-
+app.listen(4000, () => console.log('Example app listening on port 3000!'))
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -153,8 +46,4 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-
-
-app.post('/api/attendence')
 module.exports = app;
